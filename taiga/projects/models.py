@@ -213,16 +213,13 @@ class Project(ProjectDefaults, TaggedMixin, models.Model):
             self.videoconferences_salt = None
 
         # binh comments
-        if self.is_backlog_activated is None:
-            self.is_backlog_activated = True
+    
+        #if self.pk is None:
+        #    self.is_backlog_activated = True
+        #    self.is_kanban_activated = True
+        #    self.is_wiki_activated = True        
 
-        if self.is_kanban_activated is None:
-            self.is_kanban_activated = True
-
-        if self.is_wiki_activated is None:
-            self.is_wiki_activated = True
-
-
+    
         super().save(*args, **kwargs)
 
     def get_roles(self):

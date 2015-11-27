@@ -15,3 +15,5 @@ static
 .\#*
 .project
 .env
+.pydevproject
+

@@ -16,4 +16,5 @@ static
 .project
 .env
 .pydevproject
+.idea/
 

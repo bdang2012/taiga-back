@@ -21,6 +21,7 @@ from django.contrib import admin
 from .routers import router
 from .contrib_routers import router as contrib_router
 
+from taiga.users import views as users_views
 
 ##############################################
 # Default
@@ -28,9 +29,10 @@ from .contrib_routers import router as contrib_router
 
 urlpatterns = [
     url(r'^api/v1/', include(router.urls)),
-    url(r'^api/v1/', include(contrib_router.urls)),
+    # url(r'^api/v1/', include(contrib_router.urls)),
     url(r'^api/v1/api-auth/', include('taiga.base.api.urls', namespace='api')),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^binh/',users_views.binh, name='binh')
 ]
 
 handler500 = "taiga.base.api.views.api_server_error"

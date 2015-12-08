@@ -50,7 +50,7 @@ class UserSerializer(serializers.ModelSerializer):
         # with this info (including there the email)
         fields = ("id", "username", "full_name", "full_name_display",
                   "color", "bio", "lang", "theme", "timezone", "is_active",
-                  "photo", "big_photo", "roles", "projects_with_me")
+                  "photo", "big_photo", "roles", "projects_with_me","is_producer", "is_agent")
         read_only_fields = ("id",)
 
     def validate_username(self, attrs, source):
@@ -104,7 +104,7 @@ class UserAdminSerializer(UserSerializer):
         # with this info (including here the email)
         fields = ("id", "username", "full_name", "full_name_display", "email",
                   "color", "bio", "lang", "theme", "timezone", "is_active", "photo",
-                  "big_photo")
+                  "big_photo","is_producer", "is_agent")
         read_only_fields = ("id", "email")
 
 

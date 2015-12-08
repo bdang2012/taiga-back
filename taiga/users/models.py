@@ -134,6 +134,10 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     is_system = models.BooleanField(null=False, blank=False, default=False)
 
+    is_producer= models.BooleanField(null=False, blank=False, default=False)
+
+    is_agent = models.BooleanField(null=False, blank=False, default=False)
+
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']
 

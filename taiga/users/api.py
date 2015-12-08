@@ -85,6 +85,21 @@ class UsersViewSet(ModelCrudViewSet):
         username = request.QUERY_PARAMS.get("username", None)
         return self.retrieve(request, username=username)
 
+    @list_route(methods=["GET"])
+    def by_agents(self, request, *args, **kwargs):
+        self.object_list = MembersFilterBackend().filter_queryset(request,
+                                                                  self.get_queryset(),
+                                                                  self)
+
+        page = self.paginate_queryset(self.object_list)
+        if page is not None:
+            serializer = self.get_pagination_serializer(page)
+        else:
+            serializer = self.get_serializer(self.object_list, many=True)
+
+        return response.Ok(serializer.data)
+
+
     def retrieve(self, request, *args, **kwargs):
         self.object = get_object_or_404(models.User, **kwargs)
         self.check_permissions(request, 'retrieve', self.object)

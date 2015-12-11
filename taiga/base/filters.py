@@ -296,7 +296,6 @@ class MembersFilterBackend(PermissionBasedFilterBackend):
 
         return qs.distinct()
 
-
 class BaseIsProjectAdminFilterBackend(object):
     def get_project_ids(self, request, view):
         project_id = None

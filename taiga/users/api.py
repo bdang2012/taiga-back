@@ -87,9 +87,8 @@ class UsersViewSet(ModelCrudViewSet):
 
     @list_route(methods=["GET"])
     def by_agents(self, request, *args, **kwargs):
-        self.object_list = MembersFilterBackend().filter_queryset(request,
-                                                                  self.get_queryset(),
-                                                                  self)
+        self.object_list = self.get_queryset().filter(is_agent=True)
+
 
         page = self.paginate_queryset(self.object_list)
         if page is not None:

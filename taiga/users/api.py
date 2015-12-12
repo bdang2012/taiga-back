@@ -228,6 +228,24 @@ class UsersViewSet(ModelCrudViewSet):
         return response.Ok(user_data)
 
     @list_route(methods=["POST"])
+    def change_is_agent(self, request):
+        print ('<<<<bdprint: in chang_is_agent')
+        print (request.DATA.get("full_name"))
+        print (request.DATA.get("is_agent"))
+        print ('>>>>>>>>>>>>>>>')
+
+
+        try:
+            user = models.User.objects.get(id=request.DATA.get("id"))
+        except models.User.DoesNotExist:
+            raise exc.WrongArguments("Invalid, cannot find the user with given id")
+
+        user.is_agent = request.DATA.get("is_agent")
+        user.save(update_fields=["is_agent"])
+
+        return response.NoContent()
+
+    @list_route(methods=["POST"])
     def remove_avatar(self, request):
         """
         Remove the avatar of current logged user.

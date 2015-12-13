@@ -48,6 +48,7 @@ class UserPermission(TaigaResourcePermission):
     change_email_perms = AllowAny()
     contacts_perms = AllowAny()
     by_agents_perms = AllowAny()
+    by_agent_members_perms = AllowAny()
 
 
 class RolesPermission(TaigaResourcePermission):

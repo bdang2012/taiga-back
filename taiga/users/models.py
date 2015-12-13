@@ -218,6 +218,16 @@ class Role(models.Model):
     def __str__(self):
         return self.name
 
+class AgentMember(models.Model):
+    agentid = models.ForeignKey('users.User', related_name="user_agent")
+    memberid = models.ForeignKey('users.User', related_name="user_member")
+
+    class Meta:
+        verbose_name = "agentmember"
+        verbose_name_plural = "agentmembers"
+        
+    def __str__(self):
+        return self.name
 
 class AuthData(models.Model):
     user = models.ForeignKey('users.User', related_name="auth_data")

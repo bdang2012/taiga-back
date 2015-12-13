@@ -21,7 +21,7 @@ from django.utils.translation import ugettext_lazy as _
 from taiga.base.api import serializers
 from taiga.base.fields import PgArrayField
 from taiga.projects.models import Project
-from .models import User, Role
+from .models import User, Role, AgentMember
 from .services import get_photo_or_gravatar_url, get_big_photo_or_gravatar_url
 
 import re
@@ -148,3 +148,13 @@ class ProjectRoleSerializer(serializers.ModelSerializer):
         model = Role
         fields = ('id', 'name', 'slug', 'order', 'computable')
         i18n_fields = ("name",)
+
+######################################################
+## AgentMember
+######################################################
+
+class AgentMemberSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AgentMember
+        fields = ("id", "agentid", "memberid")
+        read_only_fields = ("id",)
